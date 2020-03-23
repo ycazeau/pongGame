@@ -21,6 +21,9 @@ function love.load()
     math.randomseed(os.time())
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
+    -- Set the title of the game
+    love.window.setTitle('Pong Game by Kzo!')
+
     --[[ Setting up the new font ]]
     smallFont = love.graphics.newFont('font.ttf', 8)
 
@@ -52,29 +55,57 @@ end
 
 --[[ Using update function to move the paddles]]
 function love.update(dt)
+    if gameState == 'play' then
 
-    if ball:collides(player1) then
-        -- Deflect the ball to the right
-        ball.dx = -ball.dx
-    end
+        if ball.x <= 0 then
+            player2Score = player2Score + 1
+            ball:reset()
+            gameState = 'start'
+        end
 
-    if ball:collides(player2) then
-        -- Deflect the ball to the left
-        ball.dx = -ball.dx
-    end
+        if ball.x >= VIRTUAL_WIDTH - 4 then
+            player1Score = player1Score + 1
+            ball:reset()
+            gameState = 'start'
+        end
 
-    if ball.y <=  0 then
-        -- Deflect the ball down
-        ball.dy = -ball.dy
-        ball.y = 0
-    end
+        if ball:collides(player1) then
+            -- Deflect the ball to the right
+            ball.dx = -ball.dx * 1.03
+            ball.x = player1.x + 5
+        end
 
-    if ball.y >= VIRTUAL_HEIGHT - 4 then
-        -- Deflect the ball up
-        ball.dy = -ball.dy
-        ball.y = VIRTUAL_HEIGHT - 4
-    end
-       
+            if ball.dy < 0 then
+                ball.dy = -math.random(10, 150)
+                else
+                ball.dy = math.random(10, 150)
+            end
+        end
+
+        if ball:collides(player2) then
+            -- Deflect the ball to the left
+            ball.dx = -ball.dx * 1.03
+            ball.x = player2.x - 4
+
+            if ball.dy < 0 then
+                ball.dy = -math.random(10, 150)
+            else
+                ball.dy = math.random(10, 150)
+            end
+        end
+
+        if ball.y <=  0 then
+            -- Deflect the ball down
+            ball.y = 0
+            ball.dy = -ball.dy         
+        end
+
+        if ball.y >= VIRTUAL_HEIGHT - 4 then
+            -- Deflect the ball up
+            ball.y = VIRTUAL_HEIGHT - 4
+            ball.dy = -ball.dy
+        end
+     
    
     --[[ move the left paddle or the player 1]]
     if love.keyboard.isDown('right') then
@@ -106,7 +137,7 @@ function love.update(dt)
 
     player1:update(dt)
     player2:update(dt)
-end
+end 
 
 --[[ when pressed escape button quit the game]]
 function love.keypressed(key)
@@ -114,11 +145,8 @@ function love.keypressed(key)
         love.event.quit()
 
     elseif key == 'enter' or key == 'return' then
-    if gameState == 'start' then
-        gameState = 'play'
-    else
-        gameState = 'start'
-        ball:reset()
+        if gameState == 'start' then
+            gameState = 'play'
         end
     end
 end
@@ -132,12 +160,6 @@ function love.draw()
 
     --[[ Using the font to set the welcome text at the top of the screen]]
     love.graphics.setFont(smallFont)
-  
-    if gameState == 'start' then
-        love.graphics.printf("Hello Start State !", 0, 20, VIRTUAL_WIDTH, 'center')
-    else
-        love.graphics.printf("Hello Play State !", 0, 20, VIRTUAL_WIDTH, 'center')
-    end
 
     love.graphics.setFont(scoreFont)
     
