@@ -43,7 +43,7 @@ function love.load()
     --[[ Initialize window with virtual resolution]]
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
        fullscreen = false,
-       resizable = false,
+       resizable = true,
        vsync = true       
    })
     --[[Declare score variable]]
@@ -70,6 +70,10 @@ function love.load()
 
    gameState = 'start'
 
+end
+
+function love.resize(w, h)
+    push:resize(w, h)
 end
 
 --[[ Using update function to move the paddles]]
