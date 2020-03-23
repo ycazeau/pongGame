@@ -33,6 +33,13 @@ function love.load()
         --[[ Font to draw the score]]
         victoryFont = love.graphics.newFont('font.ttf', 24)
 
+
+        sounds = {
+            ['paddle_hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
+            ['point_scored'] = love.audio.newSource('sounds/point_scored.wav', 'static'),
+            ['wall_hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static')
+        }
+         
     --[[ Initialize window with virtual resolution]]
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
        fullscreen = false,
@@ -45,7 +52,7 @@ function love.load()
    
     servingPlayer = math.random(2) == 1 and 1 or 2
 
-    winnigPlayer = 0
+    winningPlayer = 0
     
     --[[ Position of the paddles on Y axis (the can only move up and down)]]
     --[[ They are global so they can be detected by other functions and modules]]
@@ -74,6 +81,8 @@ function love.update(dt)
             ball.dx = -ball.dx * 1.03
             ball.x = player1.x + 5
 
+            sounds['paddle_hit'] : play()
+
             -- Keep velocity going in the same direction, but randomize it
             if ball.dy < 0 then
                 ball.dy = -math.random(10, 150)
@@ -86,6 +95,8 @@ function love.update(dt)
             ball.dx = -ball.dx * 1.03
             ball.x = player2.x - 4
 
+            sounds['paddle_hit'] : play()
+
             -- Keep velocity going in the same direction, but randomize it
             if ball.dy < 0 then
                 ball.dy = -math.random(10, 150)
@@ -97,13 +108,17 @@ function love.update(dt)
         -- Detect upper and lower screen boundary collision and reverse it collide
         if ball.y <=  0 then
             ball.y = 0
-            ball.dy = -ball.dy         
+            ball.dy = -ball.dy      
+            
+            sounds['wall_hit']:play()
         end
 
         -- The ball size
         if ball.y >= VIRTUAL_HEIGHT - 4 then 
             ball.y = VIRTUAL_HEIGHT - 4
             ball.dy = -ball.dy
+
+            sounds['wall_hit']:play()
         end
     
         -- if we reach the left or right edge of the screen
@@ -113,9 +128,11 @@ function love.update(dt)
             player2Score = player2Score + 1
             ball:reset()
 
+            sounds['point_scored']:play()
+
             if player2Score >= 10 then
                 gameState = 'victory'
-                winnigPlayer = 1
+                winningPlayer = 1
             else
                 gameState = 'serve'
             end
@@ -126,9 +143,11 @@ function love.update(dt)
             player1Score = player1Score + 1
             ball:reset()
 
+            sounds['point_scored']:play()
+
             if player1Score >= 10 then
                 gameState = 'victory'
-                winnigPlayer = 1
+                winningPlayer = 1
             else
                 gameState = 'serve'
             end
@@ -209,7 +228,7 @@ function love.draw()
     elseif gameState == 'victory' then
         -- draw a victory message
         love.graphics.setFont(victoryFont)
-        love.graphics.printf("Player " .. tostring(winnigPlayer) .. " wins!",0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf("Player " .. tostring(winningPlayer) .. " wins!",0, 20, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(smallFont)
         love.graphics.printf("Press Enter to Serve!",0, 42, VIRTUAL_WIDTH, 'center')
     elseif gameState == 'play' then
