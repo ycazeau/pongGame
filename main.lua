@@ -108,9 +108,9 @@ function love.draw()
     love.graphics.setFont(smallFont)
   
     if gameState == 'start' then
-        love.graphics.printf("Hello Start Game !", 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf("Hello Start State !", 0, 20, VIRTUAL_WIDTH, 'center')
     elseif gameState == 'play' then
-        love.graphics.printf("Hello Play Game !", 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf("Hello Play State !", 0, 20, VIRTUAL_WIDTH, 'center')
     end
 
     love.graphics.setFont(scoreFont)
