@@ -1,3 +1,6 @@
+--[[
+    Pong Game by Yves Ronaldo CAZEAU
+]]
 
 Class = require 'Class'
 --[[ Using the push library]]
@@ -22,7 +25,7 @@ function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     -- Set the title of the game
-    love.window.setTitle('Pong Game by Kzo!')
+    love.window.setTitle('Pong Game by Yves Ronaldo CAZEAU!')
 
     --[[ Setting up the new font ]]
     smallFont = love.graphics.newFont('font.ttf', 8)
@@ -33,7 +36,7 @@ function love.load()
         --[[ Font to draw the score]]
         victoryFont = love.graphics.newFont('font.ttf', 24)
 
-
+    -- Using the sounds table to add sound to the game
         sounds = {
             ['paddle_hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
             ['point_scored'] = love.audio.newSource('sounds/point_scored.wav', 'static'),
@@ -73,12 +76,23 @@ function love.load()
 end
 
 function love.resize(w, h)
-    push:resize(w, h)
+    push:  resize(w, h)
 end
 
 --[[ Using update function to move the paddles]]
 function love.update(dt)
-    if gameState == 'play' then
+
+    if gameState == 'serve' then
+        -- before switching to play, initialize ball's velocity based
+        -- on player who last scored
+        ball.dy = math.random(-50, 50)
+        if servingPlayer == 1 then
+            ball.dx = math.random(140, 200)
+        else
+            ball.dx = -math.random(140, 200)
+        end
+
+    elseif gameState == 'play' then
 
         -- Detect ball collision  with paddles
         if ball:collides(player1) then 
@@ -133,7 +147,9 @@ function love.update(dt)
             ball:reset()
 
             sounds['point_scored']:play()
-
+            
+            -- if we've reached a score of 10, the game is over; set the
+            -- state to done so we can show the victory message
             if player2Score >= 10 then
                 gameState = 'victory'
                 winningPlayer = 1
