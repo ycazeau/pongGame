@@ -11,9 +11,9 @@ end
 
 function Paddle:update(dt)
     if self.dy < 0 then
-        self.x = math.max(0, self.x + self.dy * dt)
+        self.y = math.max(0, self.y + self.dy * dt)
     elseif self.dy > 0 then
-        self.x  = math.min(VIRTUAL_WIDTH -50, self.x + self.dy * dt) 
+        self.y  = math.min(VIRTUAL_HEIGHT -20, self.y + self.dy * dt) 
     end
 end
 
