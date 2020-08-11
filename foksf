@@ -1,0 +1,95 @@
+[33mcommit 9024327a2155ec9f0180c67ae849def60aa3b066[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Aug 10 22:22:50 2020 -0400
+
+    Pong with one paddle
+
+[33mcommit a90870eb05575e100f63f48bbb3f37a7fedaf86d[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Tue Mar 24 02:00:55 2020 -0700
+
+    The last update
+
+[33mcommit 79d2b5c3f8ea5681212db2fe01c0922436a50d8e[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Mar 23 16:29:42 2020 -0700
+
+     Make the window resizable
+
+[33mcommit 05e5c545ee2ffc3bf2ea72a131846c615adc6abe[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Mar 23 16:08:31 2020 -0700
+
+     Update the audio feature
+
+[33mcommit e70cb8564de34770fc4ee6806a72ed9d35fcf7ee[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Mar 23 06:17:55 2020 -0700
+
+    Implement the victory update
+
+[33mcommit 76d372f3c181f3667706ba72fe2dc4f531921398[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Mar 23 05:13:49 2020 -0700
+
+    Implement the serving player feature
+
+[33mcommit 186f34645a89465704f3d828bf88b4e866156e2b[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Mar 23 03:12:44 2020 -0700
+
+    Set the title of the game and Implement the score
+
+[33mcommit d7378b445e995d1a94d287aec20bc2ff9ec77db0[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Mon Mar 23 00:46:05 2020 -0700
+
+     Collision detection and Implement the Ball class
+
+[33mcommit 4e02c2d45f00eba91a646dcc87ed77269dfba938[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Sun Mar 22 19:56:52 2020 -0700
+
+     Implement the FPS marker
+
+[33mcommit 90fb3a6cff3d8360d803eb517750acfae7d121bc[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Sun Mar 22 18:31:59 2020 -0700
+
+     Create the Class, Ball, Paddle classes and implement them
+
+[33mcommit 24e0a9e83ff086c555d456a8ae3f82da04406f8d[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Sun Mar 22 17:01:51 2020 -0700
+
+     Update font.ttf
+
+[33mcommit aabbb5e3276a4fbc6096065a4fb99d17de07bb2a[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Sun Mar 22 05:03:03 2020 -0700
+
+    Render the ball, Implement start and play gameState
+
+[33mcommit e0231e93b164c409f3e86fc429e7933d750fef4f[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Sun Mar 22 03:16:09 2020 -0700
+
+    Declae score variable, moving paddles
+
+[33mcommit 15a5a4ad344967ce6e7e58101ac0a2a78d84d2ae[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Sun Mar 22 01:58:04 2020 -0700
+
+    Setup the new font, draw Rectangle, the ball and also the paddles
+
+[33mcommit d432dee943ff064cd8835e2e84cb6bac8fea5cf6[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Thu Mar 19 05:55:13 2020 -0700
+
+    Emulating a virual screen size, Increase the size of the text amd add the push library
+
+[33mcommit 1ec4d822f18d9ab4eeec1e975b00344cd41be280[m
+Author: ycazeau <ycazeau23@gmail.com>
+Date:   Wed Mar 18 13:09:32 2020 -0700
+
+    creating the window
